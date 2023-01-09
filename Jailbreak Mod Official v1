@@ -19,7 +19,7 @@ local Window = Rayfield:CreateWindow({
         Subtitle = "Key System",
         Note = "Join the discord (Soon)",
         FileName = "RCKey",
-        SaveKey = false,
+        SaveKey = true,
         GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
         Key = "JbModOfficialKey" --Change the key to anything you want
     }
@@ -118,6 +118,6 @@ local Section = Tab:CreateSection("Misc")
 local Button = Tab:CreateButton({
     Name = "Kill GUI",
     Callback = function()
-        Print("Soon")
+        Rayfield:Destroy()
     end,
 })
