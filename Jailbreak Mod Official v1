@@ -59,13 +59,6 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-    Name = "SpeedometerHide",
-    Callback = function()
-        game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer:Destroy()
-    end,
-})
-
-local Button = Tab:CreateButton({
     Name = "Do Everything",
     Callback = function()
         game.Players.LocalPlayer.PlayerGui.AppUI.Garage.Size = UDim2.new(0.486, 0,0.334, 0)
@@ -86,19 +79,33 @@ local Button = Tab:CreateButton({
     end,
 })
 
-local Button = Tab:CreateButton({
-    Name = "Hide UI",
-    Callback = function()
-        game.Players.LocalPlayer.PlayerGui.AppUI.Enabled = false
+local Toggle = Tab:CreateToggle({
+    Name = "Speedometer Hide",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(h)
+     if h then
+         game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Visible = false
+     else
+        game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Visible = true
+     end
     end,
-})
+ })
 
-local Button = Tab:CreateButton({
-    Name = "Hide Show",
-    Callback = function()
+ local Toggle = Tab:CreateToggle({
+    Name = "Hide UI",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(h)
+     if h then
+         game.Players.LocalPlayer.PlayerGui.AppUI.Enabled = false
+         game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = false
+     else
         game.Players.LocalPlayer.PlayerGui.AppUI.Enabled = true
+        game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = true
+     end
     end,
-})
+ })
 
 local Slider = Tab:CreateSlider({
     Name = "FoV",
@@ -111,6 +118,14 @@ local Slider = Tab:CreateSlider({
        workspace.Camera.FieldOfView = s
     end,
  })
+
+ local Button = Tab:CreateButton({
+    Name = "Reset FoV",
+    Callback = function()
+        workspace.Camera.FieldOfView = 70 
+    end,
+})
+
 
 local Tab = Window:CreateTab("Credit", 8733343021) -- Title, Image
 local Section = Tab:CreateSection("Misc")
