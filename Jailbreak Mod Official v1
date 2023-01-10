@@ -100,9 +100,11 @@ local Toggle = Tab:CreateToggle({
      if h then
          game.Players.LocalPlayer.PlayerGui.AppUI.Enabled = false
          game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = false
+         game.Players.LocalPlayer.PlayerGui.HotbarGui.Enabled = false
      else
         game.Players.LocalPlayer.PlayerGui.AppUI.Enabled = true
         game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = true
+        game.Players.LocalPlayer.PlayerGui.HotbarGui.Enabled = true
      end
     end,
  })
