@@ -109,6 +109,24 @@ local Toggle = Tab:CreateToggle({
     end,
  })
 
+local Keybind = Tab:CreateKeybind({
+   Name = "Test",
+   CurrentKeybind = "Y",
+   HoldToInteract = false,
+   Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(bigdog)
+    if bigdog then
+        game.Players.LocalPlayer.PlayerGui.AppUI.Enabled = false
+         game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = false
+         game.Players.LocalPlayer.PlayerGui.HotbarGui.Enabled = false
+     else
+        game.Players.LocalPlayer.PlayerGui.AppUI.Enabled = true
+        game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = true
+        game.Players.LocalPlayer.PlayerGui.HotbarGui.Enabled = true
+     end
+   end,
+})
+
 local Slider = Tab:CreateSlider({
     Name = "FoV",
     Range = {1, 120},
