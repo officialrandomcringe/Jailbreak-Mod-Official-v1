@@ -28,15 +28,6 @@ local Tab = Window:CreateTab("Vehicles", 8733342027) -- Title, Image
 local Section = Tab:CreateSection("GUI")
 
 local Button = Tab:CreateButton({
-    Name = "SpeedometerColor",
-    Callback = function()
-        game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.UIStroke.Color = Color3.fromRGB(61, 61, 61)
-        game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.Line0.BackgroundColor3 = Color3.fromRGB(63,63,63)
-        game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.Line1.BackgroundColor3 = Color3.fromRGB(63,63,63)
-    end,
-})
-
-local Button = Tab:CreateButton({
     Name = "GaragePos",
     Callback = function()
         game.Players.LocalPlayer.PlayerGui.AppUI.Garage.Position = UDim2.new(0.525, 0,0.804, 0) 
@@ -146,13 +137,31 @@ local Slider = Tab:CreateSlider({
     end,
 })
 
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "Speedometer Color",
+    Color = Color3.fromRGB(255,255,255),
+    Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(q)
+        game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.UIStroke.Color = q
+        game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.Line0.BackgroundColor3 = q
+        game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.Line1.BackgroundColor3 = q
+    end
+})
 
-local Tab = Window:CreateTab("Credit", 8733343021) -- Title, Image
+
+local Tab = Window:CreateTab("Misc", 8733343021) -- Title, Image
 local Section = Tab:CreateSection("Misc")
 
 local Button = Tab:CreateButton({
     Name = "Kill GUI",
     Callback = function()
         Rayfield:Destroy()
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Save game",
+    Callback = function()
+        saveinstance()
     end,
 })
