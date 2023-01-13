@@ -166,6 +166,8 @@ local Button = Tab:CreateButton({
     end,
 })
 
+local Section = Tab:CreateSection("Credit")
+
 local Label = Tab:CreateLabel("Owner: RC")
 local Label = Tab:CreateLabel("Speedtest: RV")
 local Label = Tab:CreateLabel("LIB: Rayfield")
