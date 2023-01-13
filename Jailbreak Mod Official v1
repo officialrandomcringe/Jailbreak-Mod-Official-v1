@@ -165,3 +165,83 @@ local Button = Tab:CreateButton({
         saveinstance()
     end,
 })
+
+local Paragraph = Tab:CreateParagraph({Title = "Credit", Content = "Speedtest: RV     Owner: RC      LIB: Rayfield"})
+
+
+local enabled = false
+local VehicleCFrame
+local Vehicle
+local VehiclePacket
+local VehicleGear
+local VehicleRPM
+local VehicleSpeed
+
+
+local MainTab = Window:CreateTab("Speedtest", 10249261654)
+
+
+
+local VehicleName = MainTab:CreateLabel("Vehicle Name: nil")
+local Gears = MainTab:CreateLabel("Gear: 0")
+local RPMs = MainTab:CreateLabel("RPM: 0")
+local ActualSpeed = MainTab:CreateLabel("Top Speed: 0")
+
+local ToggleSpeed = MainTab:CreateToggle({
+	Name = "Toggle Speedtest",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function (Value)
+		if Value then
+			
+			VehiclePacket = require(game:GetService('ReplicatedStorage').Game.Vehicle).GetLocalVehiclePacket()
+			Vehicle = require(game:GetService('ReplicatedStorage').Game.Vehicle).GetLocalVehicleModel()
+			enabled = true
+			VehicleCFrame = Vehicle.PrimaryPart.CFrame
+			VehicleName:Set("Vehicle Name: " .. Vehicle.Name)
+
+Rayfield:Notify({
+   Title = "Speedtest Enabled!",
+   Content = "Have fun testing your Vehicle",
+   Duration = 2.5,
+   Image = 4643750660
+
+})
+			else
+
+			
+			VehicleGear = VehiclePacket.LastGear
+			VehicleRPM = VehiclePacket.LastRPM
+
+			VehiclePacket = nil
+			Vehicle = nil
+			enabled = false
+			VehicleCFrame = nil
+			
+			Rayfield:Notify({
+   Title = "Speedtest Disabled!",
+   Content = "Speedtest is now disabled, you can drive again!",
+   Duration = 2.5,
+   Image = 4643750660
+
+})
+		end
+		local rs = game:GetService("RunService")
+
+		
+		
+		rs.Heartbeat:Connect(function()
+		
+		Gears:Set("Gear: " .. tostring(VehicleGear))
+		RPMs:Set("RPM: " .. tostring(VehicleRPM))
+		ActualSpeed:Set("Top Speed: " .. tostring(VehicleSpeed))
+			if enabled then
+				VehicleSpeed = game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Top.Speed.Text
+				VehicleGear = VehiclePacket.Gear
+				VehicleRPM = VehiclePacket.rpmVisual
+				Vehicle:SetPrimaryPartCFrame(VehicleCFrame)
+			end
+		end)
+		
+	end
+})
