@@ -166,7 +166,10 @@ local Button = Tab:CreateButton({
     end,
 })
 
-local Paragraph = Tab:CreateParagraph({Title = "Credit", Content = "Speedtest: RV     Owner: RC      LIB: Rayfield"})
+local Label = Tab:CreateLabel("Owner: RC")
+local Label = Tab:CreateLabel("Speedtest: RV")
+local Label = Tab:CreateLabel("LIB: Rayfield")
+local Label = Tab:CreateLabel("Discord: https://discord.gg/TmRmJZbE")
 
 
 local enabled = false
