@@ -96,6 +96,24 @@ local Toggle = Tab:CreateToggle({
     end,
  })
 
+ local Toggle = Tab:CreateToggle({
+    Name = "Hide Others",
+    CurrentValue = false,
+    Flag = "Toggle23", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(h)
+     if h then
+         game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Visible = true
+		 game.Players.LocalPlayer.PlayerGui.AppUI.Buttons.Visible = false
+		 game.Players.LocalPlayer.PlayerGui.AppUI.Controls.Visible = false
+		 game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = false
+     else
+        game.Players.LocalPlayer.PlayerGui.AppUI.Buttons.Visible = true
+		 game.Players.LocalPlayer.PlayerGui.AppUI.Controls.Visible = true
+		 game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = true
+     end
+    end,
+ })
+
  local Section = Tab:CreateSection("GUI")
 
  local Toggle = Tab:CreateToggle({
