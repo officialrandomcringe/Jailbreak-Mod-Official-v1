@@ -154,6 +154,34 @@ local Slider = Tab:CreateSlider({
     end,
 })
 
+local Section = Tab:CreateSection("ESP")
+
+local Button = Tab:CreateButton({
+    Name = "Ceo ESP",
+    Callback = function()
+        local esp = Instance.new("Highlight")
+	esp.Parent = workspace.MilitaryBase
+	esp.OutlineColor = Color3.fromRGB(255, 229, 33)
+	esp.OutlineTransparency = 0
+	esp.Name = "Highlight"
+	esp.FillColor = Color3.fromRGB(255, 229, 33)
+	esp.FillTransparency = 0.55
+    end,
+})
+
+local Toggle = Tab:CreateToggle({
+    Name = "Enable ESP",
+    CurrentValue = false,
+    Flag = "Toggle84", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(h)
+     if h then
+         workspace.MilitaryBase.Highlight.Enabled = false
+     else
+        workspace.MilitaryBase.Highlight.Enabled = true
+     end
+    end,
+ })
+
 local MainTab = Window:CreateTab("Speedtest", 10249261654)
 
 
